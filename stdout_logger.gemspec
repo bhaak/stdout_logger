@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = StdoutLogger::VERSION
   spec.authors       = ["Patric Mueller"]
   spec.email         = ["bhaak@gmx.net"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Redirects stdout and stderr into a log file.}
+  spec.description   = %q{Redirects stdout and stderr into a log file.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
