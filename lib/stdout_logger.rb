@@ -20,7 +20,8 @@ class StdoutLogger < Logger
 
     @logger1 = Logger.new(STDOUT)
     logfile = "#{File.basename($0, ".*")}.log"
-    @logger2 = Logger.new(logfile, 'daily')
+    logdirectory = Pathname("log").writable? ? "log" : "."
+    @logger2 = Logger.new(File.join(logdirectory, logfile), 'daily')
 
     @logger1.formatter = STDOUT.tty? ? color_formatter : formatter
     @logger2.formatter = formatter
