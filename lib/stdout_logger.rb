@@ -1,4 +1,5 @@
 require 'logger'
+require 'pathname'
 require "stdout_logger/version"
 
 class StdoutLogger < Logger
@@ -6,6 +7,8 @@ class StdoutLogger < Logger
   ColorFormat = "\033[0;37m%s \033[%sm%5s\033[0m -- %s: %s\n".freeze
 
   SEVERITY_TO_COLOR_MAP = {'DEBUG'=>'0;37', 'INFO'=>'32', 'WARN'=>'33', 'ERROR'=>'31', 'FATAL'=>'31', 'UNKNOWN'=>'37'}
+
+  def set_encoding *args; end
 
   def initialize(*targets)
     formatter = proc do |severity, datetime, progname, msg|
@@ -32,10 +35,18 @@ class StdoutLogger < Logger
     @logger2.info args.strip unless args.nil? || args.strip == ""
   end
 
+  def flush
+    # ignored
+  end
+
   def close
     @logger1.close
     @logger2.close
   end
 end
 
+#if defined?(Pry) == 'constant' && Pry.class == Class
+#  $stderr.puts 'stdout_logger not activated, Pry is loaded'
+#  return
+#end
 $stdout = StdoutLogger.new
