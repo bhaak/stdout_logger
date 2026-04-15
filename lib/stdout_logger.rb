@@ -43,6 +43,15 @@ class StdoutLogger < Logger
     @logger1.close
     @logger2.close
   end
+
+  def ioctl(*)
+    # we don't support ioctl
+    -1
+  end
+
+  def tty?
+    false
+  end
 end
 
 #if defined?(Pry) == 'constant' && Pry.class == Class
